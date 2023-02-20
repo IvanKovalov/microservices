@@ -46,3 +46,5 @@ out/
 *.iml
 *.ipr
 *.iws
+
+/services/schedule/src/main/resources/application.properties
