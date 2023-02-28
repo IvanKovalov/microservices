@@ -1,11 +1,9 @@
 package com.example.tbot.telegrambot;
 
-import com.example.tbot.BotUserCache;
-import com.example.tbot.PositionMenu;
-import com.example.tbot.UserDto;
+import com.example.tbot.cache.BotUserCache;
+import com.example.tbot.models.PositionMenu;
+import com.example.tbot.models.UserDto;
 import com.example.tbot.command.CommandContainer;
-import com.example.tbot.command.MainMenuBotCommand;
-import com.example.tbot.sendmessageservice.SendBotMessageService;
 import com.example.tbot.sendmessageservice.SendBotMessageServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,6 @@
-package com.example.tbot;
+package com.example.tbot.cache;
+
+import com.example.tbot.models.UserDto;
 
 import java.util.HashMap;
 import java.util.Map;

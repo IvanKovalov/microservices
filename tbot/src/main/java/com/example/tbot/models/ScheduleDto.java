@@ -1,4 +1,4 @@
-package com.example.tbot;
+package com.example.tbot.models;
 
 import lombok.Data;
 

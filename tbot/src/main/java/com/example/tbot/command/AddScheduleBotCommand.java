@@ -1,12 +1,10 @@
 package com.example.tbot.command;
 
-import com.example.tbot.ScheduleDto;
-import com.example.tbot.UserDto;
+import com.example.tbot.models.ScheduleDto;
 import com.example.tbot.sendmessageservice.SendBotMessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
