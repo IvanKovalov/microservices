@@ -14,7 +14,7 @@ public class CommandContainer {
     @Autowired
     public CommandContainer(SendBotMessageService sendBotMessageService) {
         commandMap = ImmutableMap.<String, BotCommand>builder()
-                .put("/menu", new MainMenuBotCommand(sendBotMessageService))
+                .put("/start", new MainMenuBotCommand(sendBotMessageService))
                 .put("/schedule", new ScheduleMenuBotCommand(sendBotMessageService))
                 .put("/create_schedule", new CreateScheduleBotCommand(sendBotMessageService))
                 .put("/add_schedule", new AddScheduleBotCommand(sendBotMessageService))

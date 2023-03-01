@@ -25,12 +25,12 @@ public class ScheduleMenuBotCommand implements BotCommand{
         List<InlineKeyboardButton> buttonCreate = new ArrayList<>();
         buttonCreate.add(InlineKeyboardButton.builder()
                 .text("Create_schedule")
-                .callbackData("create_schedule")
+                .callbackData("/create_schedule")
                 .build());
         List<InlineKeyboardButton> buttonSearch = new ArrayList<>();
         buttonCreate.add(InlineKeyboardButton.builder()
                 .text("Choose_schedule")
-                .callbackData("search_schedule")
+                .callbackData("/search_schedule")
                 .build());
         keyboard.add(buttonCreate);
         keyboard.add(buttonSearch);

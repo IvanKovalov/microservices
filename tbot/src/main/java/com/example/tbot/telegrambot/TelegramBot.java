@@ -1,5 +1,6 @@
 package com.example.tbot.telegrambot;
 
+import com.example.tbot.PositionMenuContainer;
 import com.example.tbot.cache.BotUserCache;
 import com.example.tbot.models.PositionMenu;
 import com.example.tbot.models.UserDto;
@@ -17,12 +18,14 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class TelegramBot extends TelegramLongPollingBot {
     private static final Logger LOGGER = LoggerFactory.getLogger(TelegramBot.class);
     private final CommandContainer commandContainer;
+    private final PositionMenuContainer positionMenuContainer;
 
 
 
     @Autowired
     public TelegramBot() {
         this.commandContainer = new CommandContainer(new SendBotMessageServiceImpl(this));
+        this.positionMenuContainer = new PositionMenuContainer(commandContainer);
 
     }
 
@@ -54,37 +57,32 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private void textHandler(Update update) {
         UserDto userDto = BotUserCache.getUserDtoById(update.getMessage().getChatId());
-        if (userDto.getPositionMenu().equals(PositionMenu.MENU_CREATE_SCHEDULE)){
+        /*if (userDto.getPositionMenu().equals(PositionMenu.MENU_CREATE_SCHEDULE)){
             commandContainer.retrieveCommand("/add_schedule").execute(update);
         } else if (userDto.getPositionMenu().equals(PositionMenu.MENU_SEARCH_SCHEDULE)){
             commandContainer.retrieveCommand("/show_schedule").execute(update);
-        }
+        }*/
+
+        commandContainer.retrieveCommand(userDto.getPositionMenu().getNextCommand()).execute(update);
     }
 
     private void commandHandler(Update update) {
-        if(update.getMessage().getText().equals("/start")){
-            commandContainer.retrieveCommand("/menu").execute(update);
-        }else if (update.getMessage().getText().equals("/schedule")){
-            commandContainer.retrieveCommand("/schedule").execute(update);
-        }
+        commandContainer.retrieveCommand(update.getMessage().getText()).execute(update);
     }
 
     private void callbackQueryHandler(Update update) {
-        if(update.getCallbackQuery().getData().equals("create_schedule")){
-            UserDto userDto = new UserDto();
-            userDto.setId_telegram(update.getCallbackQuery().getFrom().getId());
-            userDto.setName(update.getCallbackQuery().getFrom().getUserName());
+       /* UserDto userDto = new UserDto();
+        userDto.setId_telegram(update.getCallbackQuery().getFrom().getId());
+        userDto.setName(update.getCallbackQuery().getFrom().getUserName());
+        if(update.getCallbackQuery().getData().equals("/create_schedule")){
             userDto.setPositionMenu(PositionMenu.MENU_CREATE_SCHEDULE);
-            BotUserCache.addUserDto(userDto);
             commandContainer.retrieveCommand("/create_schedule").execute(update);
-        }else if (update.getCallbackQuery().getData().equals("search_schedule")){
-            UserDto userDto = new UserDto();
-            userDto.setId_telegram(update.getCallbackQuery().getFrom().getId());
-            userDto.setName(update.getCallbackQuery().getFrom().getUserName());
+        }else if (update.getCallbackQuery().getData().equals("/search_schedule")){
             userDto.setPositionMenu(PositionMenu.MENU_SEARCH_SCHEDULE);
-            BotUserCache.addUserDto(userDto);
             commandContainer.retrieveCommand("/search_schedule").execute(update);
         }
+        BotUserCache.addUserDto(userDto);*/
+        positionMenuContainer.executeCommand(update);
     }
 
 
