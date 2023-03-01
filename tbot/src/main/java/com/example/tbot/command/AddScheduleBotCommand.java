@@ -34,6 +34,7 @@ public class AddScheduleBotCommand implements BotCommand{
             throw new RuntimeException(e);
         }
 
+        String scheduleId = "";
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpUriRequest httppost = RequestBuilder.post()
@@ -47,7 +48,7 @@ public class AddScheduleBotCommand implements BotCommand{
 
             CloseableHttpResponse response = httpclient.execute(httppost);
             try {
-                System.out.println(EntityUtils.toString(response.getEntity()));
+                scheduleId = EntityUtils.toString(response.getEntity()).split("\"id\":")[1].substring(0,1);
             } finally {
                 response.close();
             }
@@ -61,7 +62,7 @@ public class AddScheduleBotCommand implements BotCommand{
             }
         }
 
-        sendBotMessageService.sendMessage(String.valueOf(update.getMessage().getChatId()), "Your schedule has been added");
+        sendBotMessageService.sendMessage(String.valueOf(update.getMessage().getChatId()), "Your schedule has been added, with id: " + scheduleId);
 
 
         return true;

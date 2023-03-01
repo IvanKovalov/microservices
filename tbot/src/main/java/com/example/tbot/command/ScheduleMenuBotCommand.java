@@ -24,19 +24,19 @@ public class ScheduleMenuBotCommand implements BotCommand{
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> buttonCreate = new ArrayList<>();
         buttonCreate.add(InlineKeyboardButton.builder()
-                .text("Create_schedule")
+                .text("Create schedule")
                 .callbackData("/create_schedule")
                 .build());
         List<InlineKeyboardButton> buttonSearch = new ArrayList<>();
         buttonCreate.add(InlineKeyboardButton.builder()
-                .text("Choose_schedule")
+                .text("Choose schedule by id")
                 .callbackData("/search_schedule")
                 .build());
         keyboard.add(buttonCreate);
         keyboard.add(buttonSearch);
         inlineKeyboardMarkup.setKeyboard(keyboard);
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setText("choose_menu_option");
+        sendMessage.setText("Choose menu option");
         sendMessage.setChatId(update.getMessage().getChatId());
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         sendBotMessageService.sendMessage(sendMessage);
