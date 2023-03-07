@@ -24,7 +24,7 @@ public class CommandContainer {
                 .put("/create_teacher", new CreateTeacherBotCommand(sendBotMessageService))
                 .put("/add_teacher", new AddTeacherBotCommand(sendBotMessageService))
                 .put("/search_teacher", new SearchTeacherBotCommand(sendBotMessageService))
-                .put("/show_teacher", new SearchTeacherBotCommand(sendBotMessageService))
+                .put("/show_teacher", new ShowTeacherBotCommand(sendBotMessageService))
                 .build();
 
     }
