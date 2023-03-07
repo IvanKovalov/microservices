@@ -20,7 +20,7 @@ public class ScheduleService {
         ScheduleEntity scheduleEntity = new ScheduleEntity(scheduleDTO.getTeacherId(),
                 scheduleDTO.getStudentId(), scheduleDTO.getClassId(), scheduleDTO.getSubject(),
                 scheduleDTO.getMeetingTime());
-        logger.info("Created new entity with id {}", scheduleDTO.getId());
+        logger.info("Created new entity with id {}", scheduleEntity.getId());
         scheduleRepository.save(scheduleEntity);
         logger.info("Saving new entity in db");
         return scheduleEntity;

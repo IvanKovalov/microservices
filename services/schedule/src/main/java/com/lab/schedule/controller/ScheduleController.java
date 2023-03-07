@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class ScheduleController {
 
@@ -22,7 +24,7 @@ public class ScheduleController {
 
     @Operation(summary = "Add new schedule")
     @PostMapping("/schedule")
-    public ResponseEntity<ScheduleEntity> addSchedule (ScheduleDTO scheduleDTO) {
+    public ResponseEntity<ScheduleEntity> addSchedule (@RequestBody ScheduleDTO scheduleDTO) {
         logger.info("Received POST request on creating new schedule");
         ScheduleEntity scheduleEntity = scheduleService.addSchedule(scheduleDTO);
         logger.info("New schedule saved");
