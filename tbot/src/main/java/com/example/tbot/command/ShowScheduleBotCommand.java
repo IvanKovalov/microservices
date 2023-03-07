@@ -8,6 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class ShowScheduleBotCommand implements BotCommand{
     public boolean execute(Update update) {
         System.out.println(update.getMessage().getText());
 
-        HttpGet request = new HttpGet("http://localhost:8085/schedule/" + update.getMessage().getText());
+        HttpGet request = new HttpGet("http://127.0.0.1/schedule/" + update.getMessage().getText());
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(request)) {
 
