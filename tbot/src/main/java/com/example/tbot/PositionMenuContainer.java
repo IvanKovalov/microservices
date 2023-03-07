@@ -21,6 +21,8 @@ public class PositionMenuContainer {
         positionMenuImmutableMap = ImmutableMap.<String, PositionMenu>builder()
                 .put("/create_schedule", PositionMenu.MENU_CREATE_SCHEDULE)
                 .put("/search_schedule", PositionMenu.MENU_SEARCH_SCHEDULE)
+                .put("/create_teacher", PositionMenu.MENU_CREATE_TEACHER)
+                .put("/search_teacher", PositionMenu.MENU_SEARCH_TEACHER)
                 .build();
         this.commandContainer = commandContainer;
     }
