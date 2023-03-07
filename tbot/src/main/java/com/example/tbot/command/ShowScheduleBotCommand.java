@@ -15,7 +15,7 @@ import java.io.IOException;
 
 
 public class ShowScheduleBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
     public ShowScheduleBotCommand (SendBotMessageService sendBotMessageService){
         this.sendBotMessageService = sendBotMessageService;
     }

@@ -5,6 +5,7 @@ import com.example.tbot.sendmessageservice.SendBotMessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -18,7 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class AddScheduleBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
 
     public AddScheduleBotCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;
@@ -29,7 +30,6 @@ public class AddScheduleBotCommand implements BotCommand{
         ScheduleDto scheduleDto;
         try {
             scheduleDto = new ObjectMapper().registerModule(new JavaTimeModule()).readValue(messageContent, ScheduleDto.class);
-            System.out.println(scheduleDto.getClassId());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -38,12 +38,13 @@ public class AddScheduleBotCommand implements BotCommand{
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpUriRequest httppost = RequestBuilder.post()
-                    .setUri(new URI("http://schedule-service:8085/schedule"))
+                    .setUri(new URI("http://localhost:8085/schedule"))
                     .addParameter("teacherId", String.valueOf(scheduleDto.getTeacherId()))
                     .addParameter("studentId", String.valueOf(scheduleDto.getStudentId()))
                     .addParameter("classId", String.valueOf(scheduleDto.getClassId()))
                     .addParameter("subject", scheduleDto.getSubject())
                     .addParameter("meetingTime", "2023-02-28T18:55:41.014")
+                    .addHeader("'Content-Type", "application/x-www-form-urlencoded")
                     .build();
 
             CloseableHttpResponse response = httpclient.execute(httppost);

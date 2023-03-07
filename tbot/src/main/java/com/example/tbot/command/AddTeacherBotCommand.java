@@ -19,7 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class AddTeacherBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
 
     public AddTeacherBotCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;

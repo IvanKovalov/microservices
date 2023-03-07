@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.io.IOException;
 
 public class ShowTeacherBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
     public ShowTeacherBotCommand (SendBotMessageService sendBotMessageService){
         this.sendBotMessageService = sendBotMessageService;
     }
