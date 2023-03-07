@@ -38,7 +38,7 @@ public class AddScheduleBotCommand implements BotCommand{
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             HttpUriRequest httppost = RequestBuilder.post()
-                    .setUri(new URI("http://localhost:8085/schedule"))
+                    .setUri(new URI("http://schedule-service:8085/schedule"))
                     .addParameter("teacherId", String.valueOf(scheduleDto.getTeacherId()))
                     .addParameter("studentId", String.valueOf(scheduleDto.getStudentId()))
                     .addParameter("classId", String.valueOf(scheduleDto.getClassId()))
