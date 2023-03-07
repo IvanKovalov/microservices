@@ -55,6 +55,14 @@ public class TeacherController {
         return ResponseEntity.ok(teacherEntity);
     }
 
+    @PostMapping(value = "/teacher", consumes = "application/x-www-form-urlencoded")
+    public ResponseEntity<TeacherEntity> addTeacherByTelegram (TeacherDTO teacherDTO) {
+        logger.info("Received POST request on creating new teacher");
+        TeacherEntity teacherEntity = teacherService.addTeacher(teacherDTO);
+        logger.info("New teacher saved");
+        return ResponseEntity.ok(teacherEntity);
+    }
+
 
 
 
