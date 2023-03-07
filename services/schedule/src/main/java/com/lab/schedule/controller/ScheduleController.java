@@ -50,11 +50,19 @@ public class ScheduleController {
     }
 
     @Operation(summary = "Update schedule")
-    @PutMapping
-    public ResponseEntity<ScheduleEntity> updateSchedule (ScheduleDTO scheduleDTO) {
+    @PutMapping("/schedule")
+    public ResponseEntity<ScheduleEntity> updateSchedule (@RequestBody ScheduleDTO scheduleDTO) {
         logger.info("Received PUT request on updating schedule with id: {}", scheduleDTO.getId());
         ScheduleEntity scheduleEntity = scheduleService.updateSchedule(scheduleDTO);
         logger.info("Updated schedule with id: {}", scheduleDTO.getId());
+        return ResponseEntity.ok(scheduleEntity);
+    }
+
+    @PostMapping(value = "/schedule", consumes = "application/x-www-form-urlencoded")
+    public  ResponseEntity<ScheduleEntity> addScheduleByTelegram (ScheduleDTO scheduleDTO) {
+        logger.info("Received POST request on creating new schedule");
+        ScheduleEntity scheduleEntity = scheduleService.addSchedule(scheduleDTO);
+        logger.info("New schedule saved");
         return ResponseEntity.ok(scheduleEntity);
     }
 
