@@ -9,6 +9,8 @@ public enum PositionMenu {
     MENU_SEARCH_TEACHER("/show_teacher"),
     MENU_CREATE_STUDENT("/add_student"),
     MENU_CREATE_CLASSROOM("/add_classroom"),
+    MENU_SEARCH_STUDENT("/show_student"),
+    MENU_SEARCH_CLASSROOM("/show_classroom"),
 
     ;
 

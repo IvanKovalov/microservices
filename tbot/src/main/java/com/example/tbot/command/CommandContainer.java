@@ -30,7 +30,11 @@ public class CommandContainer {
                 .put("/add_student", new AddStudentBotCommand(sendBotMessageService))
                 .put("/add_classroom", new AddClassroomBotCommand(sendBotMessageService))
                 .put("/student", new StudentMenuBotCommand(sendBotMessageService))
-                .put("/calssroom", new ClassroomMenuBotCommand(sendBotMessageService))
+                .put("/classroom", new ClassroomMenuBotCommand(sendBotMessageService))
+                .put("/search_student", new SearchStudentBotCommand(sendBotMessageService))
+                .put("/search_classroom", new SearchClassroomBotCommand(sendBotMessageService))
+                .put("/show_classroom", new ShowClassroomBotCommand(sendBotMessageService))
+                .put("/show_student", new ShowStudentBotCommand(sendBotMessageService))
                 .build();
 
     }
