@@ -13,7 +13,7 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/student")
-    public ResponseEntity<Student> addStudent(StudentDTO studentDTO) {
+    public ResponseEntity<Student> addStudent(@RequestBody StudentDTO studentDTO) {
         Student student = studentService.addStudent(studentDTO);
         return ResponseEntity.ok(student);
     }
@@ -30,9 +30,15 @@ public class StudentController {
         return ResponseEntity.ok(id);
     }
 
-    @PutMapping
-    public ResponseEntity<Student> updateStudent(StudentDTO studentDTO) {
+    @PutMapping("/student")
+    public ResponseEntity<Student> updateStudent(@RequestBody StudentDTO studentDTO) {
         Student student = studentService.updateStudent(studentDTO);
+        return ResponseEntity.ok(student);
+    }
+
+    @PostMapping("/student")
+    public ResponseEntity<Student> addStudentByTelegram(StudentDTO studentDTO) {
+        Student student = studentService.addStudent(studentDTO);
         return ResponseEntity.ok(student);
     }
 }
