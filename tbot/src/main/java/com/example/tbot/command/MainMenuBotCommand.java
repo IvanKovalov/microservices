@@ -28,7 +28,7 @@ public class MainMenuBotCommand implements com.example.tbot.command.BotCommand {
     public boolean execute(Update update) {
         Long id = update.getMessage().getChatId();
         listOfCommand.add(new org.telegram.telegrambots.meta.api.objects.commands.BotCommand("/start", "start"));
-        listOfCommand.add(new org.telegram.telegrambots.meta.api.objects.commands.BotCommand("/help",  "help"));
+        listOfCommand.add(new org.telegram.telegrambots.meta.api.objects.commands.BotCommand("/classroom",  "classroom service"));
         listOfCommand.add(new org.telegram.telegrambots.meta.api.objects.commands.BotCommand("/student",  "student service"));
         listOfCommand.add(new org.telegram.telegrambots.meta.api.objects.commands.BotCommand("/teacher", "teacher service"));
         listOfCommand.add(new org.telegram.telegrambots.meta.api.objects.commands.BotCommand("/schedule", "schedule service"));
