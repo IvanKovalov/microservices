@@ -15,7 +15,7 @@ public class StudentService {
         Student student = new Student(
                 studentDTO.getId(),
                 studentDTO.getFirstName(),
-                studentDTO.getFirstName(),
+                studentDTO.getLastName(),
                 studentDTO.getPatronymic(),
                 studentDTO.getGroup());
 
