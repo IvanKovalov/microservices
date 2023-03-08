@@ -36,7 +36,7 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    @PostMapping("/student")
+    @PostMapping(value = "/student", consumes = "application/x-www-form-urlencoded")
     public ResponseEntity<Student> addStudentByTelegram(StudentDTO studentDTO) {
         Student student = studentService.addStudent(studentDTO);
         return ResponseEntity.ok(student);
