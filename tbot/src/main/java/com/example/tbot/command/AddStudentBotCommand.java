@@ -1,7 +1,6 @@
 package com.example.tbot.command;
 
 import com.example.tbot.models.StudentDto;
-import com.example.tbot.models.TeacherDto;
 import com.example.tbot.sendmessageservice.SendBotMessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
