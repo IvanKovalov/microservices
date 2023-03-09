@@ -15,7 +15,7 @@ public  class ClassroomController {
     @Autowired
     ClassroomService classroomService;
 
-    @PostMapping("/classroom")
+    @PostMapping("/clroom")
     public ResponseEntity<ClassroomEntity> addClassroom (@RequestBody ClassroomDTO classroomDTO) {
         logger.info("Received POST request on creating a new classroom");
         ClassroomEntity classroomEntity = classroomService.addClassroom(classroomDTO);
@@ -23,7 +23,7 @@ public  class ClassroomController {
         return ResponseEntity.ok(classroomEntity);
     }
 
-    @GetMapping("/classroom/{id}")
+    @GetMapping("/clroom/{id}")
     public ResponseEntity<ClassroomEntity> getClassroomById (@PathVariable int id) {
         logger.info("Received GET request on getting a classroom with id: {}", id);
         ClassroomEntity classroomEntity = classroomService.getClassroomById(id);
@@ -31,7 +31,7 @@ public  class ClassroomController {
         return ResponseEntity.ok(classroomEntity);
     }
 
-    @DeleteMapping("/classroom/{id}")
+    @DeleteMapping("/clroom/{id}")
     public ResponseEntity<Integer> deleteClassroomById (@PathVariable int id) {
         logger.info("Received DELETE request on deleting a classroom with id: {}", id);
         classroomService.deleteClassroomById(id);
@@ -39,7 +39,7 @@ public  class ClassroomController {
         return ResponseEntity.ok(id);
     }
 
-    @PutMapping
+    @PutMapping("/clroom")
     public ResponseEntity<ClassroomEntity> updateClassroom (@RequestBody ClassroomDTO classroomDTO) {
         logger.info("Received PUT request on updating a classroom with id: {}", classroomDTO.getId());
         ClassroomEntity classroomEntity = classroomService.updateClassroom(classroomDTO);
@@ -47,7 +47,7 @@ public  class ClassroomController {
         return ResponseEntity.ok(classroomEntity);
     }
 
-    @PostMapping(value = "/classroom", consumes = "application/x-www-form-urlencoded")
+    @PostMapping(value = "/clroom", consumes = "application/x-www-form-urlencoded")
     public ResponseEntity<ClassroomEntity> addClassroomByTelegram (ClassroomDTO classroomDTO) {
         logger.info("Received POST request on creating a new classroom");
         ClassroomEntity classroomEntity = classroomService.addClassroom(classroomDTO);

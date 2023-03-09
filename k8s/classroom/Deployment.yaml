@@ -13,8 +13,8 @@ spec:
         app: classroom               # мітка Pod по якому вона буде зв'язана з Deployment та Service
     spec:
       containers:
-        - image: classroom-service:02       # образ Docker
+        - image: classroom:02       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
-          name: classroom-service           # ім'я контейнеру
+          name: classroom           # ім'я контейнеру
           ports:
             - containerPort: 8085 # порт по якому можна звертатись до поди

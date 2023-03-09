@@ -8,7 +8,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /classroom
+          - path: /clroom
             pathType: "Prefix"
             backend:
               service:
