@@ -2,7 +2,6 @@ package com.example.tbot.telegrambot;
 
 import com.example.tbot.PositionMenuContainer;
 import com.example.tbot.cache.BotUserCache;
-import com.example.tbot.models.PositionMenu;
 import com.example.tbot.models.UserDto;
 import com.example.tbot.command.CommandContainer;
 import com.example.tbot.sendmessageservice.SendBotMessageServiceImpl;

@@ -1,5 +1,6 @@
 package com.example.tbot.command;
 
+
 import com.example.tbot.models.TeacherDto;
 import com.example.tbot.sendmessageservice.SendBotMessageService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class AddTeacherBotCommand implements BotCommand{
+public class AddTeacherBotCommand implements BotCommand {
     private final SendBotMessageService sendBotMessageService;
 
     public AddTeacherBotCommand(SendBotMessageService sendBotMessageService) {

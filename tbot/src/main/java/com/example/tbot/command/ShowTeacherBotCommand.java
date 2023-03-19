@@ -5,8 +5,6 @@ import com.example.tbot.http.HttpSenderI;
 import com.example.tbot.sendmessageservice.SendBotMessageService;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.io.IOException;
-
 public class ShowTeacherBotCommand implements BotCommand{
 
     private final HttpSender httpSender = new HttpSenderI();
