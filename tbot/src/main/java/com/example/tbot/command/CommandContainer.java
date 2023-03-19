@@ -24,7 +24,17 @@ public class CommandContainer {
                 .put("/create_teacher", new CreateTeacherBotCommand(sendBotMessageService))
                 .put("/add_teacher", new AddTeacherBotCommand(sendBotMessageService))
                 .put("/search_teacher", new SearchTeacherBotCommand(sendBotMessageService))
-                .put("/show_teacher", new SearchTeacherBotCommand(sendBotMessageService))
+                .put("/show_teacher", new ShowTeacherBotCommand(sendBotMessageService))
+                .put("/create_student", new CreateStudentBotCommand(sendBotMessageService))
+                .put("/create_classroom", new CreateClassroomBotCommand(sendBotMessageService))
+                .put("/add_student", new AddStudentBotCommand(sendBotMessageService))
+                .put("/add_classroom", new AddClassroomBotCommand(sendBotMessageService))
+                .put("/student", new StudentMenuBotCommand(sendBotMessageService))
+                .put("/classroom", new ClassroomMenuBotCommand(sendBotMessageService))
+                .put("/search_student", new SearchStudentBotCommand(sendBotMessageService))
+                .put("/search_classroom", new SearchClassroomBotCommand(sendBotMessageService))
+                .put("/show_classroom", new ShowClassroomBotCommand(sendBotMessageService))
+                .put("/show_student", new ShowStudentBotCommand(sendBotMessageService))
                 .build();
 
     }

@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class SearchScheduleBotCommand implements BotCommand{
 
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
 
     public SearchScheduleBotCommand (SendBotMessageService sendBotMessageService){
         this.sendBotMessageService = sendBotMessageService;

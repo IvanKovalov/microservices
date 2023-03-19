@@ -8,14 +8,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.io.IOException;
 
 
 public class ShowScheduleBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
     public ShowScheduleBotCommand (SendBotMessageService sendBotMessageService){
         this.sendBotMessageService = sendBotMessageService;
     }

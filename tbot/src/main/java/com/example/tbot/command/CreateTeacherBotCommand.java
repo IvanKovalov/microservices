@@ -4,7 +4,7 @@ import com.example.tbot.sendmessageservice.SendBotMessageService;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class CreateTeacherBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
 
     public CreateTeacherBotCommand (SendBotMessageService sendBotMessageService){
 

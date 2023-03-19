@@ -23,6 +23,10 @@ public class PositionMenuContainer {
                 .put("/search_schedule", PositionMenu.MENU_SEARCH_SCHEDULE)
                 .put("/create_teacher", PositionMenu.MENU_CREATE_TEACHER)
                 .put("/search_teacher", PositionMenu.MENU_SEARCH_TEACHER)
+                .put("/create_student", PositionMenu.MENU_CREATE_STUDENT)
+                .put("/create_classroom", PositionMenu.MENU_CREATE_CLASSROOM)
+                .put("/search_student", PositionMenu.MENU_SEARCH_STUDENT)
+                .put("/search_classroom", PositionMenu.MENU_SEARCH_CLASSROOM)
                 .build();
         this.commandContainer = commandContainer;
     }

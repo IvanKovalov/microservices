@@ -18,7 +18,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class AddScheduleBotCommand implements BotCommand{
-    SendBotMessageService sendBotMessageService;
+    private final SendBotMessageService sendBotMessageService;
 
     public AddScheduleBotCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;
@@ -29,7 +29,6 @@ public class AddScheduleBotCommand implements BotCommand{
         ScheduleDto scheduleDto;
         try {
             scheduleDto = new ObjectMapper().registerModule(new JavaTimeModule()).readValue(messageContent, ScheduleDto.class);
-            System.out.println(scheduleDto.getClassId());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -44,6 +43,7 @@ public class AddScheduleBotCommand implements BotCommand{
                     .addParameter("classId", String.valueOf(scheduleDto.getClassId()))
                     .addParameter("subject", scheduleDto.getSubject())
                     .addParameter("meetingTime", "2023-02-28T18:55:41.014")
+                    .addHeader("'Content-Type", "application/x-www-form-urlencoded")
                     .build();
 
             CloseableHttpResponse response = httpclient.execute(httppost);

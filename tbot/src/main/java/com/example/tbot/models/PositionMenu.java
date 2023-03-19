@@ -6,7 +6,12 @@ public enum PositionMenu {
     MENU_CREATE_SCHEDULE("/add_schedule"),
     MENU_SEARCH_SCHEDULE("/show_schedule"),
     MENU_CREATE_TEACHER("/add_teacher"),
-    MENU_SEARCH_TEACHER("/show_teacher")
+    MENU_SEARCH_TEACHER("/show_teacher"),
+    MENU_CREATE_STUDENT("/add_student"),
+    MENU_CREATE_CLASSROOM("/add_classroom"),
+    MENU_SEARCH_STUDENT("/show_student"),
+    MENU_SEARCH_CLASSROOM("/show_classroom"),
+
     ;
 
     private String nextCommand;
