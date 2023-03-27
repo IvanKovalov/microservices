@@ -24,7 +24,7 @@ spec:
             - secretRef:
                 name: schedule-secret
           volumeMounts:
-            - mountPath: /var/lib/mysql/data
+            - mountPath: /var/lib/mysql-demo/data
               name: mysqldb
       volumes:
         - name: mysqldb
