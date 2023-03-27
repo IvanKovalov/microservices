@@ -7,6 +7,8 @@ spec:
   selector:
     matchLabels:
       app: mysql
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -16,13 +18,13 @@ spec:
         - name: mysql
           image: mysql:latest
           imagePullPolicy: "IfNotPresent"
+          env:
+            # Use secret in real usage
+            - name: MYSQL_ROOT_PASSWORD
+              value: "1234"
           ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: mysql-config
-            - secretRef:
-                name: schedule-secret
+            - containerPort: 3306
+              name: mysql
           volumeMounts:
             - mountPath: /var/lib/mysql-demo/data
               name: mysqldb
