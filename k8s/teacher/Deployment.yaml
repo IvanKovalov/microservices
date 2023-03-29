@@ -18,3 +18,8 @@ spec:
           name: service4           # ім'я контейнеру
           ports:
             - containerPort: 8085 # порт по якому можна звертатись до поди
+          envFrom:
+            - configMapRef:
+                name: teacher-config
+            - secretRef:
+                name: teacher-secret
