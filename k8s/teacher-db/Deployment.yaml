@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teacher-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teacher-mysql
+  template:
+    metadata:
+      labels:
+        app: teacher-mysql
+    spec:
+      containers:
+        - name: teacher-mysql
+          image: teacher-mysql:latest
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: teacher-mysql-config
+          env:
+            MYSQL_DB: teacher
+          volumeMounts:
+            - mountPath: /var/lib/teachersql/data
+              name: teacherdb
+      volumes:
+        - name: teacherdb
+          persistentVolumeClaim:
+            claimName: teacher-volume-claim
