@@ -1,3 +1,4 @@
+#$ docker run --name teacher-mysql -e MYSQL_ROOT_PASSWORD=teacher-root-password -d mysql:latest
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,10 +23,9 @@ spec:
             - configMapRef:
                 name: teacher-mysql-config
             - secretRef:
-                        name: teacher-secret
-
+                name: teacher-mysql-secret
           volumeMounts:
-            - mountPath: /var/lib/teachersql/data
+            - mountPath: /var/lib/mysql/data
               name: teacherdb
       volumes:
         - name: teacherdb
