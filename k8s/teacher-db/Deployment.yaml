@@ -21,8 +21,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: teacher-mysql-config
-          env:
-            MYSQL_DB: teacher
+            - secretRef:
+                        name: teacher-secret
+
           volumeMounts:
             - mountPath: /var/lib/teachersql/data
               name: teacherdb
