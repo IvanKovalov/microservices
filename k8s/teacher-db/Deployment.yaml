@@ -1,0 +1,33 @@
+#$ docker run --name teacher-mysql -e MYSQL_ROOT_PASSWORD=teacher-root-password -d mysql:latest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teacher-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teacher-mysql
+  template:
+    metadata:
+      labels:
+        app: teacher-mysql
+    spec:
+      containers:
+        - name: teacher-mysql
+          image: teacher-mysql:latest
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: teacher-mysql-config
+            - secretRef:
+                name: teacher-mysql-secret
+          volumeMounts:
+            - mountPath: /var/lib/mysql/data
+              name: teacherdb
+      volumes:
+        - name: teacherdb
+          persistentVolumeClaim:
+            claimName: teacher-volume-claim

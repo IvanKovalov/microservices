@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: teacher-config
+data:
+  MYSQL_DATABASE: teacher
+  #POSTGRES_HOST: teacher-mysql Який еквівален в MYSQL????
