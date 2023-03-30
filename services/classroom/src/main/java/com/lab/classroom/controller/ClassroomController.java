@@ -30,7 +30,7 @@ public  class ClassroomController {
         logger.info("Returned classroom with id: {}", id);
         return ResponseEntity.ok(classroomEntity);
     }
-
+//aa
     @DeleteMapping("/clroom/{id}")
     public ResponseEntity<Integer> deleteClassroomById (@PathVariable int id) {
         logger.info("Received DELETE request on deleting a classroom with id: {}", id);
