@@ -14,7 +14,7 @@ spec:
         app: teacher-mysql
     spec:
       containers:
-      - image: teacher-mysql:latest
+      - image: mysql:latest
         name: teacher-mysql
         imagePullPolicy: Never
         ports:
