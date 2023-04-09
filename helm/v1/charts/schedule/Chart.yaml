@@ -1,0 +1,6 @@
+apiVersion: v2
+type: application
+version: 0.0.1
+name: service1
+appVersion: "0.1"
+description: "micser"
