@@ -1,0 +1,22 @@
+replicaCount: 1
+service:
+  ports:
+      name: http
+      port: 8085
+      containerPort: 8085
+
+ingress:
+  path: /schedule
+  port: 8085
+
+selector:
+  app: schedule
+
+image:
+  name: service1
+  tag: 01
+
+metadata:
+  name_deployment: service1-deployment
+  name_service: schedule-service
+  name_ingress: schedule-ingress
