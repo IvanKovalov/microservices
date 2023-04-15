@@ -18,7 +18,7 @@ spec:
         name: teacher-mysql
         imagePullPolicy: Never
         ports:
-          - containerPort: 5432
+          - containerPort: 3306
         envFrom:
           - configMapRef:
               name: teacher-mysql-config

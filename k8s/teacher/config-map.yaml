@@ -3,5 +3,6 @@ kind: ConfigMap
 metadata:
   name: teacher-config
 data:
-  MYSQL_DATABASE: teacher
+  DB_URL: jdbc:mysql://teacher-mysql:3306/teacher
+  #MYSQL_DATABASE: teacher
   #POSTGRES_HOST: teacher-mysql Який еквівален в MYSQL????
