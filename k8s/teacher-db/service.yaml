@@ -6,6 +6,6 @@ metadata:
     app: teacher-mysql
 spec:
   ports:
-    - port: 5432
+    - port: 3306
   selector:
     app: teacher-mysql

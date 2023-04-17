@@ -14,19 +14,19 @@ spec:
         app: teacher-mysql
     spec:
       containers:
-        - name: teacher-mysql
-          image: teacher-mysql:latest
-          imagePullPolicy: "IfNotPresent"
-          ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: teacher-mysql-config
-            - secretRef:
-                name: teacher-mysql-secret
-          volumeMounts:
-            - mountPath: /var/lib/mysql/data
-              name: teacherdb
+      - image: mysql:latest
+        name: teacher-mysql
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 3306
+        envFrom:
+          - configMapRef:
+              name: teacher-mysql-config
+          - secretRef:
+              name: teacher-mysql-secret
+        volumeMounts:
+          - mountPath: /var/lib/mysqldb/data
+            name: teacherdb
       volumes:
         - name: teacherdb
           persistentVolumeClaim:
