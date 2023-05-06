@@ -7,7 +7,11 @@ import com.lab.schedule.repository.ScheduleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class ScheduleService {
@@ -15,6 +19,11 @@ public class ScheduleService {
     @Autowired
     ScheduleRepository scheduleRepository;
     private final Logger logger = LoggerFactory.getLogger("Logger");
+    private final KafkaTemplate<Object, Object> template;
+
+    public ScheduleService(KafkaTemplate<Object, Object> template) {
+        this.template = template;
+    }
 
     public ScheduleEntity addSchedule(ScheduleDTO scheduleDTO) {
         ScheduleEntity scheduleEntity = new ScheduleEntity(scheduleDTO.getTeacherId(),
@@ -23,6 +32,24 @@ public class ScheduleService {
         logger.info("Created new entity with id {}", scheduleEntity.getId());
         scheduleRepository.save(scheduleEntity);
         logger.info("Saving new entity in db");
+
+        Map<String, String> message = new HashMap<>();
+        message.put("StudentId", Integer.toString(scheduleDTO.getStudentId()));
+        message.put("MeetingTime", scheduleDTO.getMeetingTime().toString());
+        logger.info("producing message to Kafka, topic=student-service, sent meeting data");
+        this.template.send("student-service", message);
+
+        message.clear();
+        message.put("ClassId", Integer.toString(scheduleDTO.getClassId()));
+        message.put("MeetingTime", scheduleDTO.getMeetingTime().toString());
+        logger.info("producing message to Kafka, topic=class-service, sent meeting data");
+        this.template.send("class-service", message);
+
+        message.clear();
+        message.put("TeacherId", Integer.toString(scheduleDTO.getClassId()));
+        message.put("MeetingTime", scheduleDTO.getMeetingTime().toString());
+        logger.info("producing message to Kafka, topic=teacher-service, sent meeting data");
+        this.template.send("teacher-service", message);
         return scheduleEntity;
     }
     
