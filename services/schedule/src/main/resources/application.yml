@@ -33,6 +33,10 @@ resilience4j:
         maxRetryAttempts: 5
         waitDuration: 10s
 
-
-
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+    producer:
+      bootstrap-servers: localhost:9092
 
