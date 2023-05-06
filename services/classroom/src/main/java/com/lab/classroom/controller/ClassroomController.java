@@ -54,4 +54,10 @@ public  class ClassroomController {
         logger.info("New classroom saved");
         return ResponseEntity.ok(classroomEntity);
     }
+
+    @KafkaListener(id = "techerGroup", topics = "classroom-service")
+    public void listenFromReceivingTopic(String message) {
+        log.info("Received: " + message);
+    }
+
 }

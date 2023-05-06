@@ -41,4 +41,10 @@ public class StudentController {
         Student student = studentService.addStudent(studentDTO);
         return ResponseEntity.ok(student);
     }
+
+    @KafkaListener(id = "techerGroup", topics = "student-service")
+    public void listenFromReceivingTopic(String message) {
+        log.info("Received: " + message);
+    }
+
 }

@@ -63,6 +63,11 @@ public class TeacherController {
         return ResponseEntity.ok(teacherEntity);
     }
 
+    @KafkaListener(id = "techerGroup", topics = "teacher-service")
+    public void listenFromReceivingTopic(String message) {
+        log.info("Received: " + message);
+    }
+
 
 
 
