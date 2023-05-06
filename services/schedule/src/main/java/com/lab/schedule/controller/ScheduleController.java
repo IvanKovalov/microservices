@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -79,13 +80,13 @@ public class ScheduleController {
 
     private int attempt=1;
 
-    @Operation(summary = "Get schedule by id")
+    @Operation(summary = "Get student by id")
     @GetMapping("/schedules")
     @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
     @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
     public ResponseEntity<StudentDTO> communication () {
         System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
-        return ResponseEntity.ok(restTemplate.getForObject("http://student-service:8085/student", StudentDTO.class));
+        return ResponseEntity.ok(restTemplate.getForObject("http://student-service:8085/student/1", StudentDTO.class));
     }
 
     public ResponseEntity serviceNotWorking (Exception e){
@@ -96,6 +97,8 @@ public class ScheduleController {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+
 
 
 }
