@@ -21,3 +21,6 @@ kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic student-serv
 kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic teacher-service --from-beginning
 
 kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic classroom-service --from-beginning
+
+Для виконання використовувались java 11 + spring boot 2.7.8 + kafka 18.3.1
+
