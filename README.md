@@ -15,6 +15,9 @@
 7.	Так як наразі присутній лише 1 сервіс, отримання повідомлення від сервісу schedule-service, можна виконавши команду у терміналі  
 kubectl exec -it pod/kafka-0 -- /bin/bash
 8.	І далі виконати 
+
 kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic student-service --from-beginning
+
 kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic teacher-service --from-beginning
+
 kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic classroom-service --from-beginning
