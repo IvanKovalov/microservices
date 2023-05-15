@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,21 +36,24 @@ public class ScheduleService {
 
         Map<String, String> message = new HashMap<>();
         message.put("StudentId", Integer.toString(scheduleDTO.getStudentId()));
+        if(scheduleDTO.getMeetingTime() == null){
+            scheduleDTO.setMeetingTime(LocalDateTime.now().toString());
+        }
         message.put("MeetingTime", scheduleDTO.getMeetingTime().toString());
         logger.info("producing message to Kafka, topic=student-service, sent meeting data");
-        this.template.send("student-service", message);
+        this.template.send("student-service", message.toString());
 
         message.clear();
         message.put("ClassId", Integer.toString(scheduleDTO.getClassId()));
         message.put("MeetingTime", scheduleDTO.getMeetingTime().toString());
         logger.info("producing message to Kafka, topic=class-service, sent meeting data");
-        this.template.send("class-service", message);
+        this.template.send("class-service", message.toString());
 
         message.clear();
         message.put("TeacherId", Integer.toString(scheduleDTO.getClassId()));
         message.put("MeetingTime", scheduleDTO.getMeetingTime().toString());
         logger.info("producing message to Kafka, topic=teacher-service, sent meeting data");
-        this.template.send("teacher-service", message);
+        this.template.send("teacher-service", message.toString());
         return scheduleEntity;
     }
     

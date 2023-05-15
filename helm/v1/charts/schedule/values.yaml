@@ -6,7 +6,7 @@ service:
       containerPort: 8085
 
 ingress:
-  path: /schedule
+  path: /
   port: 8085
 
 selector:
@@ -14,7 +14,7 @@ selector:
 
 image:
   name: service1
-  tag: 01
+  tag: 1
 
 metadata:
   name_deployment: service1-deployment

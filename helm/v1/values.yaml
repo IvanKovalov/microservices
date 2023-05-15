@@ -1,0 +1,11 @@
+kafka:
+  fullnameOverride: kafka
+  numPartitions: 3
+  autoCreateTopicsEnable: false
+  provisioning:
+    enabled: true
+    topics:
+      - name: student-service
+      - name: classroom-service
+      - name: teacher-service
+  persistence:
