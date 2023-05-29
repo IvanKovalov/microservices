@@ -1,0 +1,22 @@
+replicaCount: 1
+service:
+  ports:
+    name: http
+    port: 8085
+    containerPort: 8085
+
+ingress:
+  path: /student
+  port: 8085
+
+selector:
+  app: student
+
+image:
+  name: student-service
+  tag: 03
+
+metadata:
+  name_deployment: student-deployment
+  name_service: student-service
+  name_ingress: student-ingress
