@@ -1,0 +1,22 @@
+replicaCount: 1
+service:
+  ports:
+    name: http
+    port: 8085
+    containerPort: 8085
+
+ingress:
+  path: /teacher
+  port: 8085
+
+selector:
+  app: teacher
+
+image:
+  name: service4:04
+  tag: 04
+
+metadata:
+  name_deployment: service4-deployment
+  name_service: teacher-service
+  name_ingress: teacher-ingress
