@@ -17,6 +17,10 @@ image:
   tag: ""
 
 metadata:
+  name_config:
   name_deployment:
   name_service:
   name_ingress:
+
+env:
+

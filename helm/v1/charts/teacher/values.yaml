@@ -14,9 +14,16 @@ selector:
 
 image:
   name: service4
-  tag: 04
+  tag: "04"
 
 metadata:
+  name_config: teacher-config
   name_deployment: service4-deployment
   name_service: teacher-service
   name_ingress: teacher-ingress
+
+env:
+- name: DB_URL
+  value: jdbc:mysql://teacher-mysql:3306/teacher-mysql
+- name: DB_PASSWORD
+  value: teacher-root-password

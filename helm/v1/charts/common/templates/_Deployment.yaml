@@ -25,8 +25,12 @@ spec:
         - image: {{ .Values.image.name }}:{{ .Values.image.tag }}       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
           name: {{ .Values.image.name }}           # ім'я контейнеру
+          #command: ["printenv"]
+          #command: ["sleep","infinity"]
           ports:
             - containerPort: {{ .Values.service.ports.containerPort }} # порт по якому можна звертатись до поди
-
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.metadata.name_config }}
   {{- end -}}
   {{- end -}}
