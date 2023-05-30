@@ -1,0 +1,6 @@
+apiVersion: v2
+type: application
+version: 0.0.1
+name: student-service
+appVersion: "0.1"
+description: "Student Service"
