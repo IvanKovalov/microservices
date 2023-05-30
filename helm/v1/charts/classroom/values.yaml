@@ -1,0 +1,22 @@
+replicaCount: 1
+service:
+  ports:
+    name: http
+    port: 8085
+    containerPort: 8085
+
+ingress:
+  path: /clroom
+  port: 8085
+
+selector:
+  app: classroom
+
+image:
+  name: classroom
+  tag: 02
+
+metadata:
+  name_deployment: classroom-deployment
+  name_service: classroom-service
+  name_ingress: classroom-ingress
