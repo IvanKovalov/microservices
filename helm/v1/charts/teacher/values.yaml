@@ -13,7 +13,7 @@ selector:
   app: teacher
 
 image:
-  name: service4:04
+  name: service4
   tag: 04
 
 metadata:
