@@ -1,0 +1,8 @@
+mysql:
+  mysqlRootPassword: "teacher-root-password"
+  mysqlDatabase: "teacher-mysql"
+  mysqlUser: "root"
+  mysqlPassword: "teacher-root-password"
+  persistence:
+    size: 2Gi
+    mountPath: /var/lib/mysqldb/data

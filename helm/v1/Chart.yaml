@@ -4,3 +4,7 @@ version: 0.0.1
 name: demo
 appVersion: "0.1"
 description: "micser"
+dependencies:
+  - name: mysql
+    version: 9.10.1
+    repository: https://charts.bitnami.com/bitnami
