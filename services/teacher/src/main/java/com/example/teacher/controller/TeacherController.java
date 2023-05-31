@@ -1,6 +1,7 @@
 package com.example.teacher.controller;
 
 import com.example.teacher.models.TeacherDTO;
+import com.example.teacher.models.ScheduleDTO;
 import com.example.teacher.models.TeacherEntity;
 import com.example.teacher.service.TeacherService;
 import org.slf4j.Logger;
@@ -8,6 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
 
 @RestController
 public class TeacherController {
@@ -17,6 +26,9 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
 
+    @Autowired
+    @Lazy
+    private RestTemplate restTemplate;
 
     //@Operation(summary = "Add new teacher")
 
@@ -64,6 +76,25 @@ public class TeacherController {
     }
 
 
+//------lab 4-----------
+    private int attempt = 1;
+
+    @GetMapping("/teachers")
+    @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
+    @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
+    public ResponseEntity<ScheduleDTO> communication () {
+        System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
+        return ResponseEntity.ok(restTemplate.getForObject("http://service1:8085/schedule", ScheduleDTO.class));
+    }
+
+    public ResponseEntity serviceNotWorking() {
+        return ResponseEntity.ok("Service not working");
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 
 
