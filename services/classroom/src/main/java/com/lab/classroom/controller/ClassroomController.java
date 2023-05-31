@@ -1,19 +1,32 @@
 package com.lab.classroom.controller;
 
+import com.lab.student.dto.ScheduleDTO;
 import com.lab.classroom.dto.ClassroomDTO;
 import com.lab.classroom.entity.ClassroomEntity;
 import com.lab.classroom.service.ClassroomService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
 
 @RestController
 public  class ClassroomController {
     private final Logger logger = LoggerFactory.getLogger("Logger");
     @Autowired
     ClassroomService classroomService;
+
+    @Autowired
+    @Lazy
+    private RestTemplate restTemplate;
+
 
     @PostMapping("/clroom")
     public ResponseEntity<ClassroomEntity> addClassroom (@RequestBody ClassroomDTO classroomDTO) {
@@ -53,5 +66,24 @@ public  class ClassroomController {
         ClassroomEntity classroomEntity = classroomService.addClassroom(classroomDTO);
         logger.info("New classroom saved");
         return ResponseEntity.ok(classroomEntity);
+    }
+
+    private int attempt = 1;
+
+    @GetMapping("/students")
+    @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
+    @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
+    public ResponseEntity<ScheduleDTO> communication () {
+        System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
+        return ResponseEntity.ok(restTemplate.getForObject("http://service1:8085/schedule", ScheduleDTO.class));
+    }
+
+    public ResponseEntity serviceNotWorking() {
+        return ResponseEntity.ok("Service not working");
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
