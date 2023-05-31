@@ -61,7 +61,7 @@ public class StudentController {
     @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
     public ResponseEntity<ScheduleDTO> communication () {
         System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
-        return ResponseEntity.ok(restTemplate.getForObject("http://service1:8085/schedule", ScheduleDTO.class));
+        return ResponseEntity.ok(restTemplate.getForObject("http://schedule-service:8085/schedule", ScheduleDTO.class));
     }
 
     public ResponseEntity serviceNotWorking() {
