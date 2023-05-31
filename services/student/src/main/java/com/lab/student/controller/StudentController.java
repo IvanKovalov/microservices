@@ -1,16 +1,28 @@
 package com.lab.student.controller;
 
+import com.lab.student.dto.ScheduleDTO;
 import com.lab.student.dto.StudentDTO;
 import com.lab.student.model.Student;
 import com.lab.student.service.StudentService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
 
 @RestController
 public class StudentController {
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    @Lazy
+    private RestTemplate restTemplate;
 
     @PostMapping("/student")
     public ResponseEntity<Student> addStudent(@RequestBody StudentDTO studentDTO) {
@@ -40,5 +52,24 @@ public class StudentController {
     public ResponseEntity<Student> addStudentByTelegram(StudentDTO studentDTO) {
         Student student = studentService.addStudent(studentDTO);
         return ResponseEntity.ok(student);
+    }
+
+    private int attempt = 1;
+
+    @GetMapping("/students")
+    @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
+    @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
+    public ResponseEntity<ScheduleDTO> communication () {
+        System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
+        return ResponseEntity.ok(restTemplate.getForObject("http://service1:8085/schedule", ScheduleDTO.class));
+    }
+
+    public ResponseEntity serviceNotWorking() {
+        return ResponseEntity.ok("Service not working");
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
