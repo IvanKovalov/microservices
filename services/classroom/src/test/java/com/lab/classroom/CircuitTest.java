@@ -1,7 +1,5 @@
-package com.lab.classroom;
+package com.lab.student;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -12,14 +10,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-@SpringBootTest
-class ClassroomApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-    @Test
-    void circuitBreakerTest () {
+public class CircuitTest {
+    public static void main(String[] args) {
         int concurrentRequests = 100;
         int errCount = 0;
 
@@ -27,11 +19,11 @@ class ClassroomApplicationTests {
 
         LocalDateTime localDateTime;
 
-        String url = "http://student-service:8085/students";
+        String uri = "http://student-service:8085/students";
 
         for (int i = 0; i < concurrentRequests; i++) {
             localDateTime = LocalDateTime.now();
-            HttpGet request = new HttpGet(url);
+            HttpGet request = new HttpGet(uri);
             try (CloseableHttpClient httpClient = HttpClients.createDefault();
                  CloseableHttpResponse response = httpClient.execute(request)) {
                 Duration dur = Duration.between(localDateTime, LocalDateTime.now());
@@ -52,5 +44,4 @@ class ClassroomApplicationTests {
 
         System.out.println("Requests sent: " + concurrentRequests + " Request failed: " + errCount);
     }
-
 }
