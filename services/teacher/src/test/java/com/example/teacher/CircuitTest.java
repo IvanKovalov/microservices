@@ -20,7 +20,7 @@ public class CircuitTest {
 
         LocalDateTime localDateTime;
 
-        String uri = "http://teacher-service:8085/teachers";
+        String uri = "http://service4:8085/teachers";
 
         for (int i = 0; i < concurrentRequests; i++) {
             localDateTime = LocalDateTime.now();
