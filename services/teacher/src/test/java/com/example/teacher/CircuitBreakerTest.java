@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class CircuitTest {
+public class CircuitBreakerTest {
     public static void main(String[] args) {
         int concurrentRequests = 100;
         int errCount = 0;
@@ -20,7 +20,8 @@ public class CircuitTest {
 
         LocalDateTime localDateTime;
 
-        String uri = "http://service4:8085/teachers";
+        //String uri = "http://teacher-service:8085/teachers";
+        String uri = "http://localhost/teacher/test";
 
         for (int i = 0; i < concurrentRequests; i++) {
             localDateTime = LocalDateTime.now();

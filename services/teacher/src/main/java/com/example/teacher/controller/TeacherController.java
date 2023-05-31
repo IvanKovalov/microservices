@@ -26,7 +26,6 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
 
-
     @Autowired
     @Lazy
     private RestTemplate restTemplate;
@@ -80,22 +79,26 @@ public class TeacherController {
 //------lab 4-----------
     private int attempt = 1;
 
-    @GetMapping("/teachers")
+    @GetMapping("/teacher/test")
     @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
     @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
     public ResponseEntity<ScheduleDTO> communication () {
         System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
-        return ResponseEntity.ok(restTemplate.getForObject("http://schedule-service:8085/schedule", ScheduleDTO.class));
+        return ResponseEntity.ok(restTemplate.getForObject("http://schedule-service:8085/schedule/1", ScheduleDTO.class));
     }
 
     public ResponseEntity serviceNotWorking() {
         return ResponseEntity.ok("Service not working");
     }
+    public ResponseEntity getAllAvailableProducts(Exception ex) {
 
+        return ResponseEntity.ok("getAllAvailableProducts");
+    }
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
 
 
 

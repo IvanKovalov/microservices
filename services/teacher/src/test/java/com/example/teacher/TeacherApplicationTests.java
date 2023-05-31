@@ -34,7 +34,8 @@ class TeacherApplicationTests {
 
 		LocalDateTime localDateTime;
 
-		String url = "http://service4:8085/teachers";
+		//String url = "http://teacher-service:8085/teachers";
+		String url = "http://localhost/teacher/test";
 
 		for (int i = 0; i < concurrentRequests; i++) {
 			localDateTime = LocalDateTime.now();
