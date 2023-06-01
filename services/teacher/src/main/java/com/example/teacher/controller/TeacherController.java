@@ -79,7 +79,7 @@ public class TeacherController {
 //------lab 4-----------
     private int attempt = 1;
 
-    String url = "schedule-service.default.svc.cluster.local:8083/schedule/1";
+    String url = "schedule-service.default.svc.cluster.local:8085/schedule/1";
     @GetMapping("/teacher/test")
     @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
     @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
