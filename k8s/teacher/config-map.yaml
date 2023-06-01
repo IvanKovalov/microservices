@@ -4,5 +4,5 @@ metadata:
   name: teacher-config
 data:
   DB_URL: jdbc:mysql://teacher-mysql:3306/teacher
+  #SCH_URL:
   #MYSQL_DATABASE: teacher
-  #POSTGRES_HOST: teacher-mysql Який еквівален в MYSQL????

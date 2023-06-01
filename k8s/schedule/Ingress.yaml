@@ -14,4 +14,4 @@ spec:
               service:
                 name: schedule-service
                 port:
-                  number: 8085
+                  number: 8083

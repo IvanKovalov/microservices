@@ -5,7 +5,8 @@ metadata:
 spec:
   type: ClusterIP      # тип доступу до сервісу, ClusterIp - значення за замовчуванням і може бути пропущене
   ports:
-    - port: 8085         # порт по якому можна звератись до сервісу
-      targetPort: 8085 # порт контейнера
+    - name: http
+      port: 8083         # порт по якому можна звератись до сервісу
+      targetPort: 8083 # порт контейнера
   selector:
     app: schedule

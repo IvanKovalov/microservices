@@ -79,12 +79,13 @@ public class TeacherController {
 //------lab 4-----------
     private int attempt = 1;
 
+    String url = "schedule-service.default.svc.cluster.local:8083/schedule/1";
     @GetMapping("/teacher/test")
     @CircuitBreaker(name ="userService",fallbackMethod = "serviceNotWorking")
     @Retry(name = "userService",fallbackMethod = "getAllAvailableProducts")
     public ResponseEntity<ScheduleDTO> communication () {
         System.out.println("retry method called "+attempt++ +" times "+" at "+new Date());
-        return ResponseEntity.ok(restTemplate.getForObject("http://schedule-service:8085/schedule/1", ScheduleDTO.class));
+        return ResponseEntity.ok(restTemplate.getForObject(url, ScheduleDTO.class));
     }
 
     public ResponseEntity serviceNotWorking() {
@@ -92,7 +93,7 @@ public class TeacherController {
     }
     public ResponseEntity getAllAvailableProducts(Exception ex) {
 
-        return ResponseEntity.ok("getAllAvailableProducts");
+        return ResponseEntity.ok("This is Retry response");
     }
     @Bean
     public RestTemplate restTemplate() {
